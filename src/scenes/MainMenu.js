@@ -1,29 +1,45 @@
-import { Scene } from 'phaser';
-import { getPhrase } from '../services/translations';
+import { Scene } from "phaser";
+import { getLanguageConfig, getPhrase } from "../services/translations";
 
-export class MainMenu extends Scene
-{
-    constructor ()
-    {
-        super('MainMenu');
-    }
+export class MainMenu extends Scene {
+  constructor() {
+    super("MainMenu");
+  }
 
-    create ()
-    {
-        this.add.image(512, 384, 'background');
+  init(data) {
+    this.cameras.main.fadeIn(500, 0, 0, 0);
+    this.language = data.language || getLanguageConfig();
+  }
 
-        this.add.image(512, 300, 'logo');
+  create() {
+    this.add.image(512, 384, "background");
 
-        this.add.text(512, 460, getPhrase('Jugar'), {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        }).setOrigin(0.5);
+    this.add.image(512, 300, "logo");
 
-        this.input.once('pointerdown', () => {
+    const menuButton = this.add
+      .text(512, 460, getPhrase('MenuPrincipal'), {
+        fontFamily: "Arial Black",
+        fontSize: 38,
+        color: "#ffffff",
+        stroke: "#000000",
+        strokeThickness: 8,
+        align: "center",
+      })
+      .setOrigin(0.5);
 
-            this.scene.start('Game');
+    menuButton.setInteractive();
 
-        });
-    }
+    menuButton.on("pointerover", () => {
+      menuButton.setScale(1.46);
+    });
+
+    menuButton.on("pointerout", () => {
+      menuButton.setScale(1);
+    });
+
+    menuButton.on("pointerdown", () => {
+        menuButton.setScale(1.6);
+        this.scene.start('Game'); 
+      });
+  }
 }
