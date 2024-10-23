@@ -2,6 +2,7 @@ import { Boot } from "./scenes/Boot";
 import { Game } from "./scenes/Game";
 import { GameOver } from "./scenes/GameOver";
 import { MainMenu } from "./scenes/MainMenu";
+import { ChooseLanguage } from "./scenes/ChooseLanguage";
 import { Preloader } from "./scenes/Preloader";
 import { Hud } from "./scenes/Hud";
 
@@ -24,7 +25,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [Boot, Preloader, MainMenu, Game, GameOver, Hud],
+  scene: [Boot, Preloader, ChooseLanguage, MainMenu, Game, GameOver, Hud],
 };
 
 export default new Phaser.Game(config);
