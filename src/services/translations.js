@@ -1,8 +1,7 @@
-// import { EN_US, ES_AR } from '../enums/languages';
-const ES_AR = 'es-AR';
-const EN_US = 'en-US';
+import { languages } from "../enums/languages";
+const { ES_AR, EN_US, PT_BR, DE_DE } = languages;
 
-const PROJECT_ID = '1';
+const PROJECT_ID = 'cm22i5ee40001fah01iuyeqdp';
 let translations = null;
 let language = ES_AR;
 
@@ -14,7 +13,7 @@ export async function getTranslations(lang, callback) {
         return callback ? callback() : false;
     }
 
-    return await fetch(`https://traducila-ffeb6da1cd57.herokuapp.com/api/translations/${PROJECT_ID}/${language}`)
+    return await fetch(`https://traducila.vercel.app/api/translations/${PROJECT_ID}/${language}`)
     .then(response => response.json())
     .then(data => {
         localStorage.setItem('translations', JSON.stringify(data));
